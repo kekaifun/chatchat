@@ -31,12 +31,14 @@ def hello_world():
 @app.route("/ask", methods=['POST'])
 def ask():
     req = request.json
-    conversation_id = req["conversation_id"]
-    parent_id = req['parent_id']
+    conversation_id = req.get("conversation_id", '')
+    parent_id = req.get("parent_id", "")
     prompt = req['prompt']
     answer = ""
     for data in chatbot.ask(prompt, conversation_id, parent_id):
         answer = data["message"]
+        parent_id = data["parent_id"]
+        conversation_id = data["conversation_id"]
     return {
         "answer": answer,
         "parent_id": parent_id,
