@@ -4,4 +4,5 @@ help: ## Display this help.
 
 
 docker-build: ## build docker image
-	docker build . -f Dockerfile -t kiser/chatchat:v0.0.5
+	docker build . -f Dockerfile -t kiser/chatchat:v0.0.6
+	docker push kiser/chatchat:v0.0.6
